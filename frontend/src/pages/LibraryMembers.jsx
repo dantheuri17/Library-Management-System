@@ -1,12 +1,15 @@
-// Library.js
+// LibraryMembers.js
 
 import { useState } from "react";
 import MemberForm from "../components/MemberForm";
+import MemberList from '../components/MemberList';
 
-function Library() {
+function LibraryMembers() {
 	const [members, setMembers] = useState([]);
 
 	const addMember = (newMember) => {
+
+		
 		// Add the new member to the list of members
 		setMembers([...members, newMember]);
 	};
@@ -16,15 +19,9 @@ function Library() {
 			<h1>Library Management System</h1>
 			<MemberForm onAddMember={addMember} />
 			<h2>Library Members</h2>
-			<ul>
-				{members.map((member, index) => (
-					<li key={index}>
-						Name: {member.name}, Age: {member.age}, Role: {member.role}
-					</li>
-				))}
-			</ul>
+			<MemberList /> 
 		</div>
 	);
 }
 
-export default Library;
+export default LibraryMembers;

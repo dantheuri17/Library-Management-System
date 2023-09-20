@@ -1,17 +1,42 @@
+// import './App.css'
 
-import './App.css'
-import Library from './pages/Library'
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	NavLink,
+} from "react-router-dom";
+ 
+import Home from "./pages/Home";
+import LibraryMembers from "./pages/LibraryMembers";
+import LibraryBooks from "./pages/LibraryBooks";
+import BookCheckout from './pages/BookCheckout'; 
+import BookReturn from './pages/BookReturn'; 
+import MemberDetails from './pages/MemberDetails';
 
-function App() {
+const App = () => {
+	return (
+		<Router>
+			<main>
+				<NavLink to="/">Home</NavLink>
+				<NavLink to="members">Library Members</NavLink>
+				<NavLink to="books">Books</NavLink>
+				<NavLink to="check-out">Borrow Book</NavLink>
+				<NavLink to="return">Return Book</NavLink>
 
-  return (
-    <div>
-      <div className="app">
-        <Library /> 
-      </div>
+				<Routes>
+					<Route index element={<Home />} />
+					<Route path="members" element={<LibraryMembers />} />
+					<Route path="books" element={<LibraryBooks />} />
+					<Route path="check-out" element={<BookCheckout />} />
+					<Route path="return" element={<BookReturn />} />
+					<Route path="member/:id" element={<MemberDetails />} />
 
-    </div>
-  )
-}
+				</Routes>
+				
+			</main>
+		</Router>
+	);
+};
 
-export default App
+export default App;

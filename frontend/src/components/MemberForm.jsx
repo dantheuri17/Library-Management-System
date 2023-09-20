@@ -1,3 +1,7 @@
+
+
+
+
 // MemberForm.js
 
 import { useState } from "react";
@@ -8,16 +12,37 @@ function MemberForm({ onAddMember }) {
 	const [age, setAge] = useState("");
 	const [role, setRole] = useState("");
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Create a new member object
 		const newMember = { name, age, role };
-		// Pass the new member data to the parent component
-		onAddMember(newMember);
-		// Clear the form fields
-		setName("");
-		setAge("");
-		setRole("");
+
+		try {
+			const response = await fetch("http://127.0.0.1:3000/member", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newMember),
+			});
+
+			if (!response.ok) {
+				throw new Error("Failed to add member");
+			}
+
+			// Clear the form fields
+			setName("");
+			setAge("");
+			setRole("");
+
+			// Optionally, you can fetch updated member data or perform other actions
+			// after adding the member.
+
+			// Call a callback function or update state in your parent component if needed.
+			onAddMember(newMember);
+		} catch (error) {
+			console.error("Error adding member:", error);
+		}
 	};
 
 	return (

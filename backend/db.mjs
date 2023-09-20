@@ -1,17 +1,36 @@
 // db.mjs (ES6 module)
 
 import { MongoClient } from "mongodb";
+import session from 'express-session'; 
 
 // Connection URL
-const url = "mongodb://127.0.0.1:27017"; // Replace with your MongoDB server URL
+const url = "mongodb://127.0.0.1:27017"; 
 
-// Create a new MongoClient
-const client = new MongoClient(url, { useUnifiedTopology: true });
+const client = new MongoClient(url);
+let membersCollection; 
+let booksCollection; 
 
-async function connectToMongoDB() {
+
+async function connectToMongoDB(app) {
 	try {
 		await client.connect();
 		console.log("Connected to MongoDB");
+		const librarydb = client.db("librarydb");
+		membersCollection = librarydb.collection('members');
+		booksCollection = librarydb.collection('books');
+
+		app.locals.members = membersCollection; 
+		app.locals.books = booksCollection; 
+
+		app.use(
+			session({
+					secret: "secret-key", 
+					resave: false,
+					saveUninitialized: true,
+			
+			})
+		);
+
 	} catch (error) {
 		console.error("Error connecting to MongoDB:", error);
 	}
