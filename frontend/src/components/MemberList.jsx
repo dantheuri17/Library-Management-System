@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Table } from "antd";
+import { Link } from "react-router-dom";
 
 
 function MemberList() {
@@ -24,16 +25,25 @@ function MemberList() {
 			title: "Name",
 			dataIndex: "name",
 			key: "name",
+			render: (text, record) => (
+				<Link to={`/member/${record._id}`}>{text}</Link>
+			),
 		},
 		{
 			title: "Age",
 			dataIndex: "age",
 			key: "age",
+			render: (text, record) => (
+				<Link to={`/member/${record._id}`}>{text}</Link>
+			),
 		},
 		{
 			title: "Role",
 			dataIndex: "role",
 			key: "role",
+			render: (text, record) => (
+				<Link to={`/member/${record._id}`}>{text}</Link>
+			),
 		},
 	];
 
