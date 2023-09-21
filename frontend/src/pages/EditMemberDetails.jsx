@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate
 
 const EditMemberDetails = () => {
-	const { id } = useParams(); // Get the member ID from the URL
-	const history = useHistory();
+	const { id } = useParams();
+	const navigate = useNavigate(); // Use useNavigate for navigation
 	const [member, setMember] = useState({
 		name: "",
 		age: "",
@@ -11,8 +11,7 @@ const EditMemberDetails = () => {
 	});
 
 	useEffect(() => {
-		
-		fetch(`http://localhost:3000/member/${id}`) 
+		fetch(`http://localhost:3000/member/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setMember(data);
@@ -20,7 +19,7 @@ const EditMemberDetails = () => {
 			.catch((error) => {
 				console.error("Error fetching member details:", error);
 			});
-	}, [id]); // Include id in the dependency array to fetch member details when it changes
+	}, [id]);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -29,7 +28,6 @@ const EditMemberDetails = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// Send updated member details to your backend for saving
 		fetch(`http://localhost:3000/member/edit/${id}`, {
 			method: "PUT",
 			headers: {
@@ -38,11 +36,11 @@ const EditMemberDetails = () => {
 			body: JSON.stringify(member),
 		})
 			.then((response) => response.json())
-			.then((data) => {
-				// Handle success or error responses from the backend
-				// You can add a success message or redirect to the member details page
-				history.push(`/member/${id}`);
-			})
+			.then(() => {
+                // Handle success or error responses from the backend
+                // You can add a success message or navigate to the member details page
+                navigate(`/member/${id}`); // Use navigate to go to the member details page
+            })
 			.catch((error) => {
 				console.error("Error updating member details:", error);
 			});

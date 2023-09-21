@@ -13,7 +13,7 @@ import LibraryBooks from "./pages/LibraryBooks";
 import BookCheckout from './pages/BookCheckout'; 
 import BookReturn from './pages/BookReturn'; 
 import MemberDetails from './pages/MemberDetails';
-// import EditMemberDetails from './pages/EditMemberDetails';
+import EditMemberDetails from './pages/EditMemberDetails';
 
 const App = () => {
 	return (
@@ -32,7 +32,7 @@ const App = () => {
 					<Route path="check-out" element={<BookCheckout />} />
 					<Route path="return" element={<BookReturn />} />
 					<Route path="member/:id" element={<MemberDetails />} />
-					{/* <Route path="member/edit/:id" element={<EditMemberDetails />} /> */}
+					<Route path="member/edit/:id" element={<EditMemberDetails />} />
 					
 
 				</Routes>
