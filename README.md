@@ -3,7 +3,8 @@
 An application for librarians to manage books and members. 
 
 Adding Members: 
-![image](https://github.com/dantheuri17/Library-Management-System/assets/101451951/2ba74880-fcd7-4913-b850-4a448535d9a9)
+![image](https://github.com/dantheuri17/Library-Management-System/assets/101451951/a0f96af7-5636-45e1-b8b4-9c9497377804)
+
 
 
 Adding Books: 
