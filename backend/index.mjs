@@ -21,6 +21,14 @@ app.get('/members', async(req, res) => {
     res.json(members); 
 })
 
+app.get('/books', async(req, res) => {
+    const booksCollection = req.app.locals.books;
+
+    const books = await booksCollection.find().toArray(); 
+
+    res.json(books); 
+})
+
 app.use("/member", memberRoutes);
 app.use("/book", bookRoutes);
 

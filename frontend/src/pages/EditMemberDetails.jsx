@@ -55,7 +55,7 @@ const EditMemberDetails = () => {
 					<input
 						type="text"
 						name="name"
-						value={member.name}
+						placeholder={member.name}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -64,7 +64,7 @@ const EditMemberDetails = () => {
 					<input
 						type="number"
 						name="age"
-						value={member.age}
+						placeholder={member.age}
 						onChange={handleInputChange}
 					/>
 				</div>
@@ -73,7 +73,7 @@ const EditMemberDetails = () => {
 					<input
 						type="text"
 						name="role"
-						value={member.role}
+						placeholder={member.role}
 						onChange={handleInputChange}
 					/>
 				</div>

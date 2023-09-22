@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 const MemberDetails = () => {
-	const { id } = useParams(); // Get the member ID from the URL
+	const { id } = useParams(); 
+	const navigate = useNavigate(); 
 	const [member, setMember] = useState(null);
+	
 
 	useEffect(() => {
-		// Fetch member details from your MongoDB backend using the extracted ID
-		fetch(`http://localhost:3000/member/${id}`) // Replace with your API endpoint
+		
+		fetch(`http://localhost:3000/member/${id}`) 
 			.then((response) => response.json())
 			.then((data) => {
 				// Update the state with the fetched member details
@@ -16,7 +18,12 @@ const MemberDetails = () => {
 			.catch((error) => {
 				console.error("Error fetching member details:", error);
 			});
-	}, [id]); // Include id in the dependency array to fetch member details when it changes
+	}, [id]); 
+
+		const handleCheckoutClick = () => {
+			// Navigate to the checkout page, passing the member ID as a URL parameter
+			navigate(`/check-out/${id}`);
+		};
 
 	return (
 		<div>
@@ -26,12 +33,14 @@ const MemberDetails = () => {
 					<p>Name: {member.name}</p>
 					<p>Age: {member.age}</p>
 					<p>Role: {member.role}</p>
-					{/* Display other member details here */}
+					
 					<Link to={`/member/edit/${id}`}>Edit Member</Link>
 				</div>
 			) : (
 				<div>Loading...</div>
 			)}
+
+			<button onClick={handleCheckoutClick}>Checkout</button>
 		</div>
 	);
 };
