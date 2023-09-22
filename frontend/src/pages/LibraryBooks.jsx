@@ -107,7 +107,7 @@ function LibraryBooks() {
 	};
 
 	return (
-		<div>
+		<div className="library-books-container">
 			<h1>Library Management System</h1>
 			<form onSubmit={handleSubmit}>
 				<input

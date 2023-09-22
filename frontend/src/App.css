@@ -9,8 +9,8 @@
   display: flex;
   justify-content: space-around;
   padding: 10px;
+  z-index: 100;
 }
-
 
 .navbar-link {
   color: #fff;
@@ -19,12 +19,14 @@
   transition: color 0.2s;
 }
 
-
 .navbar-link:hover {
   color: #fff;
 }
 
+.content-container {
+  padding-top: 60px; 
+}
 
-body {
-  margin-top: 60px; 
+.library-books-container {
+  margin-top: 100px; /* Adjust the margin-top value as needed */
 }
