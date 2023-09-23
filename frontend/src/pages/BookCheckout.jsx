@@ -47,7 +47,7 @@ function BookCheckout() {
 			<ul>
 				{searchResults.map((member) => (
 					<li key={member._id}>
-						<Link to={`/MemberBookCheckout/${member._id}`}>{member.name}</Link>
+						<Link to={`/check-out/${member._id}`}>{member.name}</Link>
 					</li>
 				))}
 			</ul>

@@ -5,6 +5,7 @@ import cors from "cors";
 import { connectToMongoDB, closeMongoDBConnection } from "./db.mjs";
 import memberRoutes from './routes/memberRoutes.mjs';
 import bookRoutes from './routes/bookRoutes.mjs';
+import checkoutRoutes from './routes/check-outRoutes.mjs';
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.get('/books', async(req, res) => {
 
 app.use("/member", memberRoutes);
 app.use("/book", bookRoutes);
+app.use('/check-out', checkoutRoutes);
 
 app.listen(3000, () => console.log("app is running"));
 

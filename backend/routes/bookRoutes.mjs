@@ -19,24 +19,6 @@ router.post("/", async (req, res) => {
 	}
 });
 
-router.get("/:id", cors(), async (req, res) => {
-	try {
-		const booksCollection = req.app.locals.books;
-
-		const bookId = req.params.id;
-		const book = await booksCollection.findOne({
-			_id: new ObjectId(bookId),
-		});
-
-		if (!book) {
-			return res.sendStatus(404).json({ message: "Book Not Found" });
-		}
-		res.json(book);
-	} catch (error) {
-		console.error("Error fetching book data:", error);
-		res.sendStatus(500);
-	}
-});
 
 router.put("/edit/:id", cors(), async (req, res) => {
 	const bookId = req.params.id;
@@ -87,7 +69,7 @@ router.delete('/delete/:id', async(req,res) => {
     }
 })
 
-router.get("/books/search", async (req, res) => {
+router.get("/search", async (req, res) => {
 	const searchQuery = req.query.query.toLowerCase();
 	const booksCollection = req.app.locals.books;
 
@@ -107,5 +89,26 @@ router.get("/books/search", async (req, res) => {
 		res.status(500).json({ message: "Internal server error" });
 	}
 });
+
+
+router.get("/:id", cors(), async (req, res) => {
+	try {
+		const booksCollection = req.app.locals.books;
+
+		const bookId = req.params.id;
+		const book = await booksCollection.findOne({
+			_id: new ObjectId(bookId),
+		});
+
+		if (!book) {
+			return res.sendStatus(404).json({ message: "Book Not Found" });
+		}
+		res.json(book);
+	} catch (error) {
+		console.error("Error fetching book data:", error);
+		res.sendStatus(500);
+	}
+});
+
 
 export default router;

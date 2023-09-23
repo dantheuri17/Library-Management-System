@@ -18,6 +18,7 @@ import MemberDetails from './pages/MemberDetails';
 import EditMemberDetails from './pages/EditMemberDetails';
 import BookDetails from './pages/BookDetails';
 import EditBookDetails from './pages/EditBookDetails'; 
+import MemberBookCheckout from './pages/MemberBookCheckout';
 
 const App = () => {
 	return (
@@ -45,13 +46,16 @@ const App = () => {
 					<Route path="members" element={<LibraryMembers />} />
 					<Route path="books" element={<LibraryBooks />} />
 					<Route path="check-out" element={<BookCheckout />} />
-					<Route path="check-out:id" element={<BookCheckout />} />
+					<Route path="check-out" element={<BookCheckout />} />
 					<Route path="return" element={<BookReturn />} />
+
 					<Route path="member/:id" element={<MemberDetails />} />
 					<Route path="member/edit/:id" element={<EditMemberDetails />} />
 
 					<Route path="book/:id" element={<BookDetails />} />
 					<Route path="book/edit/:id" element={<EditBookDetails />}></Route>
+
+					<Route path="check-out/:id" element={<MemberBookCheckout />} />
 				</Routes>
 			</main>
 		</Router>
